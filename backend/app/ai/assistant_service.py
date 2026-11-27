@@ -1,4 +1,5 @@
 import json
+import logging
 import re
 from abc import ABC, abstractmethod
 from typing import Dict, List, Optional, Tuple
@@ -18,6 +19,7 @@ from app.models.entities import (
 )
 
 settings = get_settings()
+logger = logging.getLogger(__name__)
 
 SYSTEM_INSTRUCTIONS = """You are the ShikshaSetu Foundation AI Teacher Assistant.
 Follow these strict rules:
@@ -122,8 +124,12 @@ class GeminiLLMProvider(BaseLLMProvider):
     provider_name = "gemini-api"
 
     def __init__(self, api_key: str, model: str):
-        self.api_key = api_key
-        self.model = model
+        cleaned_api_key = (api_key or "").strip().strip('"').strip("'")
+        cleaned_model = (model or "gemini-2.5-flash").strip().strip('"').strip("'")
+        if cleaned_model.startswith("models/"):
+            cleaned_model = cleaned_model.removeprefix("models/")
+        self.api_key = cleaned_api_key
+        self.model = cleaned_model or "gemini-2.5-flash"
         self.fallback = DeterministicFallbackProvider()
 
     async def generate(self, question: str, verified_facts: Dict, history: List[Dict]) -> Tuple[str, str]:
@@ -156,10 +162,18 @@ class GeminiLLMProvider(BaseLLMProvider):
             async with httpx.AsyncClient(timeout=25.0) as client:
                 resp = await client.post(url, params={"key": self.api_key}, json=body)
                 if resp.status_code == 429:
+                    logger.warning("Gemini API rate limit (429) reached for model %s", self.model)
                     text, _ = await self.fallback.generate(question, verified_facts, history)
                     return (
                         text + "\n\n_(Gemini API rate limit reached; displayed grounded backend summary instead.)_",
                         "gemini-rate-limit-fallback",
+                    )
+                if resp.status_code >= 400:
+                    logger.warning(
+                        "Gemini API HTTP %s for model %s: %s",
+                        resp.status_code,
+                        self.model,
+                        resp.text[:300],
                     )
                 resp.raise_for_status()
                 data = resp.json()
@@ -171,7 +185,8 @@ class GeminiLLMProvider(BaseLLMProvider):
                 if not text:
                     return await self.fallback.generate(question, verified_facts, history)
                 return text, f"gemini:{self.model}"
-        except Exception:
+        except Exception as exc:
+            logger.warning("Gemini API request failed for model %s: %s", self.model, exc)
             text, _ = await self.fallback.generate(question, verified_facts, history)
             return (
                 text + "\n\n_(Gemini API unavailable right now; displayed grounded backend summary instead.)_",

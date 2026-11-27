@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     SUPABASE_SERVICE_ROLE_KEY: str = ""
 
     # CORS
-    CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173"
+    CORS_ORIGINS: str = "https://shikshasetu-foundation.vercel.app"
 
     # Case study operational constraints (Dataset A3)
     OUTREACH_WORKERS_COUNT: int = 5
