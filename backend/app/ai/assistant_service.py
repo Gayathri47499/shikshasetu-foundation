@@ -30,8 +30,8 @@ Follow these strict rules:
 5. Clearly separate two sections in your response:
    - **Verified Backend Facts** (citing exact IDs and numbers from the JSON)
    - **Suggested Teacher Next Steps (Requires Human Review)**
-6. End with a brief reminder that final decisions remain with the Teacher Coordinator and Outreach Team."""
-
+6. End with a brief reminder that final decisions remain with the Teacher Coordinator and Outreach Team.
+7. Keep each bullet concise and complete; never leave a heading or bullet dangling without its data."""
 
 class BaseLLMProvider(ABC):
     """Provider abstraction so Gemini can be swapped without rewriting application logic."""
@@ -154,7 +154,7 @@ class GeminiLLMProvider(BaseLLMProvider):
             "contents": contents,
             "generationConfig": {
                 "temperature": 0.2,
-                "maxOutputTokens": 900,
+                "maxOutputTokens": 2048,
             },
         }
 
