@@ -5,7 +5,7 @@
 
 ## 1. Disclosure of AI-Assisted Work
 - AI coding and drafting assistants were used to accelerate full-stack scaffolding (FastAPI endpoints, React/Tailwind components, SQLAlchemy schema definitions, and documentation formatting).
-- Google Gemini (`gemini-2.5-flash`) is integrated into the runtime **Teacher AI Assistant** solely behind a backend Python adapter (`backend/app/ai/assistant_service.py`) to summarize authorized database facts and draft non-stigmatizing support checklists.
+- Google Gemini (`gemini-3.5-flash`) is integrated into the runtime **Teacher AI Assistant** solely behind a backend Python adapter (`backend/app/ai/assistant_service.py`) to summarize authorized database facts and draft non-stigmatizing support checklists.
 
 ## 2. Personal Verification & Ownership
 I personally reviewed, verified, and tested:

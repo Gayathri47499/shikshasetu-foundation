@@ -36,7 +36,7 @@ ShikshaSetu Foundation turns fragmented school attendance registers, academic in
 - **Frontend**: React 18, TypeScript, Vite, Tailwind CSS, Framer Motion, Recharts, Lucide Icons, Axios
 - **Backend**: Python, FastAPI, SQLAlchemy 2.0, Pydantic, Pandas, NumPy, Scikit-learn, FPDF2, PyJWT
 - **Database**: PostgreSQL (Supabase) in production / SQLite zero-config default locally
-- **AI**: Google Gemini API (`gemini-2.5-flash`) behind an abstract backend provider
+- **AI**: Google Gemini API (`gemini-3.5-flash`) behind an abstract backend provider
 
 ---
 

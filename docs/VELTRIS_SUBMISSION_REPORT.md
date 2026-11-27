@@ -53,7 +53,7 @@ ShikshaSetu Foundation supports **900 students across 10 schools** (`61%–82%` 
   - Bands: **High Priority** (`>=60` or attendance `<50%`), **Review Soon** (`>=40` or attendance `<65%`), **Routine Review**.
   - **Fairness & Human Oversight**: Educators can validate, override, or defer any recommendation with an audit-logged reason.
 - **Future Supervised ML**: Deferred until consented, representative, outcome-labelled longitudinal records exist (Logistic Regression / tree-based models evaluated via temporal validation, PR-AUC, calibration, and subgroup fairness checks).
-- **Generative AI**: Google Gemini (`gemini-2.5-flash`) explains verified backend facts and drafts non-stigmatizing checklists without receiving PII.
+- **Generative AI**: Google Gemini (`gemini-3.5-flash`) explains verified backend facts and drafts non-stigmatizing checklists without receiving PII.
 
 ---
 

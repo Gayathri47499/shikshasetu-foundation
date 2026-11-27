@@ -125,11 +125,11 @@ class GeminiLLMProvider(BaseLLMProvider):
 
     def __init__(self, api_key: str, model: str):
         cleaned_api_key = (api_key or "").strip().strip('"').strip("'")
-        cleaned_model = (model or "gemini-2.5-flash").strip().strip('"').strip("'")
+        cleaned_model = (model or "gemini-3.5-flash").strip().strip('"').strip("'")
         if cleaned_model.startswith("models/"):
             cleaned_model = cleaned_model.removeprefix("models/")
         self.api_key = cleaned_api_key
-        self.model = cleaned_model or "gemini-2.5-flash"
+        self.model = cleaned_model or "gemini-3.5-flash"
         self.fallback = DeterministicFallbackProvider()
 
     async def generate(self, question: str, verified_facts: Dict, history: List[Dict]) -> Tuple[str, str]:

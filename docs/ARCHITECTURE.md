@@ -24,7 +24,7 @@ flowchart LR
     API --> AI
 
     AUTH & CSV & RISK & PLAN & KPI & AI --> DB[("PostgreSQL (Supabase) / SQLite Local")]
-    AI -->|Structured Non-PII Facts Only| GEM["Google Gemini API (gemini-2.5-flash)"]
+    AI -->|Structured Non-PII Facts Only| GEM["Google Gemini API (gemini-3.5-flash)"]
 ```
 
 ## AI Responsibility Matrix (Challenge A Task C & D)

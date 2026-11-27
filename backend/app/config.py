@@ -21,7 +21,7 @@ class Settings(BaseSettings):
 
     # Gemini LLM (Backend-only)
     GEMINI_API_KEY: str = ""
-    GEMINI_MODEL: str = "gemini-2.5-flash"
+    GEMINI_MODEL: str = "gemini-3.5-flash"
 
     # Optional Supabase integration
     SUPABASE_URL: str = ""
